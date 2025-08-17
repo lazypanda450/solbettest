@@ -1,0 +1,71 @@
+{
+  "version": "0.1.0",
+  "name": "sol_staking_vault",
+  "instructions": [
+    {
+      "name": "initializeVault",
+      "accounts": [
+        { "name": "vault", "isMut": true, "isSigner": true },
+        { "name": "user", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [{ "name": "rewardMint", "type": "publicKey" }]
+    },
+    {
+      "name": "stakeSol",
+      "accounts": [
+        { "name": "vault", "isMut": true, "isSigner": false },
+        { "name": "stakeAccount", "isMut": true, "isSigner": true },
+        { "name": "staker", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    },
+    {
+      "name": "claimRewards",
+      "accounts": [
+        { "name": "vault", "isMut": true, "isSigner": false },
+        { "name": "vaultSigner", "isMut": false, "isSigner": false },
+        { "name": "vaultSplTokenAccount", "isMut": true, "isSigner": false },
+        { "name": "stakeAccount", "isMut": true, "isSigner": false },
+        { "name": "staker", "isMut": false, "isSigner": true },
+        { "name": "stakerSplTokenAccount", "isMut": true, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Vault",
+      "type": {
+        "kind": "struct",
+        "fields": [{ "name": "rewardMint", "type": "publicKey" }]
+      }
+    },
+    {
+      "name": "StakeAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "owner", "type": "publicKey" },
+          { "name": "solStaked", "type": "u64" },
+          { "name": "startTime", "type": "i64" },
+          { "name": "lastClaimTime", "type": "i64" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidStakeAmount",
+      "msg": "The amount of SOL staked is not within the allowed range."
+    },
+    {
+      "code": 6001,
+      "name": "Unauthorized",
+      "msg": "Only the owner of the stake account can claim rewards."
+    }
+  ]
+}

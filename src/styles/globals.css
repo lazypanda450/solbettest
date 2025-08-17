@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+
+    --base: 220 13% 60%;
+    --sidenav-width: 170px;
+    --chat-width: 60px;
+
+    --gamba-ui-border-radius: 10px;
+
+    --gamba-ui-button-default-background: #0e0e16;
+    --gamba-ui-button-default-background-hover: #11111d;
+    --gamba-ui-button-default-color: white;
+
+    --gamba-ui-button-main-background: #6b7280;
+    --gamba-ui-button-main-background-hover: #9ca3af;
+    --gamba-ui-button-main-color: rgb(0, 0, 0);
+
+    --gamba-ui-input-background: #0e0e16;
+    --gamba-ui-input-color: #ffffff;
+    --gamba-ui-input-background-hover: #11111d;
+  }
+
+  .dark {
+    --background: 223 33% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9;
+
+    --base: 220 13% 40%;
+    --sidenav-width: 170px;
+    --chat-width: 60px;
+
+    --gamba-ui-border-radius: 10px;
+
+    --gamba-ui-button-default-background: #0e0e16;
+    --gamba-ui-button-default-background-hover: #11111d;
+    --gamba-ui-button-default-color: white;
+
+    --gamba-ui-button-main-background: #6b7280;
+    --gamba-ui-button-main-background-hover: #9ca3af;
+    --gamba-ui-button-main-color: rgb(0, 0, 0);
+
+    --gamba-ui-input-background: #0e0e16;
+    --gamba-ui-input-color: #ffffff;
+    --gamba-ui-input-background-hover: #11111d;
+
+    --roadmap-background: #1e293b;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans font-medium;
+  }
+  
+  /* Gaming font utilities */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-gaming;
+  }
+  
+  /* Button and interactive elements */
+  button {
+    @apply font-secondary font-semibold;
+  }
+  
+  /* Number displays (balances, scores, etc.) */
+  .gaming-numbers {
+    @apply font-mono font-bold;
+  }
+  
+  /* Gaming-specific elements */
+  .game-title {
+    @apply font-gaming font-bold text-2xl;
+  }
+  
+  .game-stats {
+    @apply font-mono;
+  }
+  
+  /* Navigation and menu items */
+  nav a, nav button {
+    @apply font-secondary font-semibold;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    transition: margin-left 0.5s, margin-right 0.5s;
+    margin-left: var(--sidenav-width);
+    margin-right: var(--chat-width);
+  }
+}
+
+.gambaButton {
+  background-color: var(--gamba-ui-button-main-background);
+  color: black;
+}
+
+.gambaButton:hover {
+  background-color: var(--gamba-ui-button-main-background-hover);
+}
+
+/* splash game styles */
+@keyframes splashAnimation {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes loadingAnimation {
+  0% {
+    transform: translateX(-125%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Recent plays skeleton pulse */
+@keyframes Skeleton {
+  0% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  50% {
+    opacity: 0.5;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  100% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.animate-Skeleton {
+  animation: Skeleton 1.5s cubic-bezier(0.2, 0, 0.2, 1) infinite;
+}
+
+/* GambaUi.WagerInput overriding styles */
+.sc-iBdnpw.gPLpOF img {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+/* Dashboard gamecard styles */
+@keyframes tileAnimation {
+  0% {
+    background-position: -100px 100px;
+  }
+
+  100% {
+    background-position: 100px -100px;
+  }
+}
+
+.game-card {
+  transition: transform 0.2s ease;
+  position: relative;
+  transform: scale(1);
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.game-card:hover {
+  transform: scale(1.01);
+  outline: none;
+  outline-offset: 0px;
+}
+
+.game-card .background {
+  transition:
+    transform 0.2s ease,
+    opacity 0.3s;
+  animation: tileAnimation 5s linear infinite;
+  opacity: 0;
+}
+
+.game-card:hover .background {
+  opacity: 0.35;
+}
+
+.game-card .image {
+  transition: transform 0.2s ease;
+  transform: scale(0.9);
+}
+
+.game-card:hover .image {
+  transform: scale(1);
+}
+
+.game-card .play {
+  transition: opacity 0.2s ease;
+  opacity: 0;
+  backdrop-filter: blur(20px);
+}
+
+.game-card:hover .play {
+  opacity: 1;
+}
+
+/* roadmap styles */
+
+.card {
+  position: sticky;
+  background-color: var(--roadmap-background);
+  top: 0;
+  padding: 1.5rem;
+  width: 100%;
+  box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  border: 1px solid hsl(var(--border));
+  border-bottom: 4px solid hsl(var(--border));
+}
+
+.card:nth-child(1) {
+  top: 7rem !important;
+}
+
+.card:nth-child(2) {
+  top: 8rem !important;
+}
+
+.card:nth-child(3) {
+  top: 9rem !important;
+}
+
+.card:nth-child(4) {
+  top: 10rem !important;
+}
+
+.card:nth-child(5) {
+  top: 11rem !important;
+}
+
+.card:nth-child(6) {
+  top: 20rem !important;
+}
